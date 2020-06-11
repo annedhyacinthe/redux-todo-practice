@@ -1,7 +1,7 @@
-import React from 'react';
-import AddTask from './components/AddTodo';
-import ShowTask from './components/ShowTodo';
-import './App.css';
+import React from "react";
+import AddTask from "./components/AddTodo";
+import ShowTask from "./components/ShowTodo";
+import "./App.css";
 
 function Todo() {
   return (
