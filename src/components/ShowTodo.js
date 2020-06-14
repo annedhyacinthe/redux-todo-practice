@@ -55,7 +55,6 @@ const ShowTask = ( prop ) =>{
 
   
   const mapStateToProps = state => {
-  console.log('whats good hoe')
   return({ todos: state })
   }
   
