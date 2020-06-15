@@ -12,15 +12,14 @@ export default function taskReducer(state = {}, action){
     }
     case DELETE_TODO:{
       const { id } = action.payload
-      // console.log(state,id)
       const newObj = {...state}
       delete newObj[id]
       return newObj
     }
     case TOGGLE_TODO:{
-      const { id,status } = action.payload
+      const { id } = action.payload
       const newObj = {...state}
-      status === false ? newObj[id].status = true : newObj[id].status = false
+      newObj[id].status = !newObj[id].status
       return newObj
     }
     default:
