@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { add } from '../redux/action/actions';
 
-const AddTask = ( dispatch ) =>{
+const AddTask = ( props ) =>{
 
   const [newTask, setNewTask] = useState('');
   
@@ -12,12 +12,12 @@ const AddTask = ( dispatch ) =>{
   }
   const handleSubmit = () =>{
     console.log('clicked')
-    dispatch.add(newTask)
+    props.add(newTask)
   }
 
     return(
       <div>
-        <input type="text" onChange={ handleChange } />
+        <input type="text" onChange={ handleChange } value={newTask}/>
         <button onClick={ handleSubmit }>submit</button>
       </div>
     )
