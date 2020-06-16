@@ -1,62 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import  Task  from './Todo';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Task from "./Todo";
 
-const ShowTask = ( prop ) =>{
-  const [ todo, setTodo] = useState(null)
-  
-  useEffect(()=>{
-    const makeArray = () =>{
-      if(prop.todos){
-      setTodo(Object.values(prop.todos))
+const ShowTask = () => {
+  const [todo, setTodo] = useState(null);
+  const show = useSelector((state) => state);
+  console.log(show);
+
+  useEffect(() => {
+    const makeArray = () => {
+      if (show) {
+        setTodo(Object.values(show));
       }
-    }
-    makeArray()
-  },[prop.todos])
+    };
+    makeArray();
+  }, [show]);
 
-    return(
+  return (
     <div>
       <h2>In Process</h2>
       <div>
-        {todo && todo.length ? 
-          <ul> 
-            {
-            todo.filter((todo) =>todo.status === false).map((todo) => {
-              return<Task
-                id={todo.id}
-                content={todo.content}
-                status = {todo.status}
-              />
-            })}
-          </ul> :
-          'No task' 
-        }
+        {todo && todo.length ? (
+          <ul>
+            {todo
+              .filter((todo) => todo.status === false)
+              .map((todo) => {
+                return (
+                  <Task
+                    id={todo.id}
+                    content={todo.content}
+                    status={todo.status}
+                  />
+                );
+              })}
+          </ul>
+        ) : (
+          "No task"
+        )}
       </div>
       <h2>Completed</h2>
       <div>
-        {todo && todo.length ? 
-          <ul> 
-            {
-            todo.filter((todo) =>todo.status === true).map((todo) => {
-                return<Task
-                  id={todo.id}
-                  content={todo.content}
-                  status = {todo.status}
-                />
+        {todo && todo.length ? (
+          <ul>
+            {todo
+              .filter((todo) => todo.status === true)
+              .map((todo) => {
+                return (
+                  <Task
+                    id={todo.id}
+                    content={todo.content}
+                    status={todo.status}
+                  />
+                );
               })}
-          </ul> :
-          'No task' 
-        }
+          </ul>
+        ) : (
+          "No task"
+        )}
       </div>
-
     </div>
-    )
-  }
+  );
+};
 
-  
-  const mapStateToProps = state => {
-  return({ todos: state })
-  }
-  
-  export default connect(mapStateToProps)(ShowTask)
+export default ShowTask;
 
