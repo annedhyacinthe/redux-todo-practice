@@ -5,20 +5,9 @@ export function add(content) {
 }
 
 export function deleteTask(id) {
-  return {
-    type: DELETE_TODO,
-    payload: {
-      id: id,
-    },
-  };
+  return { type: DELETE_TODO, id: id };
 }
 
-export function moveTask(status, id) {
-  return {
-    type: TOGGLE_TODO,
-    payload: {
-      id: id,
-      status: status,
-    },
-  };
+export function moveTask(id) {
+  return { type: TOGGLE_TODO, id: id };
 }
