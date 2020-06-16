@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { add } from '../redux/action/actions';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-const AddTask = ( props ) =>{
+const AddTask = () => {
+  const [newTask, setNewTask] = useState("");
+  const dispatch = useDispatch();
 
-  const [newTask, setNewTask] = useState('');
-  
   const handleChange = (e) => {
-    console.log(e.target.value)
-    setNewTask(e.target.value)
-  }
-  const handleSubmit = () =>{
-    console.log('clicked')
-    props.add(newTask)
-  }
+    setNewTask(e.target.value);
+  };
 
-    return(
-      <div>
-        <input type="text" onChange={ handleChange } value={newTask}/>
-        <button onClick={ handleSubmit }>submit</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <input type="text" onChange={handleChange} />
+      <button onClick={() => dispatch({ type: "ADD_TODO", content: newTask })}>
+        submit
+      </button>
+    </div>
+  );
+};
 
-export default connect(
-  null,
-  {
-    add: add
-  }
-)(AddTask);
+export default AddTask;
